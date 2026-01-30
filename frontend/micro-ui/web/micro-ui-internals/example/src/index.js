@@ -36,57 +36,60 @@ const initTokens = (stateCode) => {
     window.localStorage.getItem("token") ||
     process.env[`REACT_APP_${userType}_TOKEN`];
 
-  /* ---------------- LANGUAGE (ADD THIS PART) ---------------- */
+  /* ================== LOCALE (URL → STORAGE → FALLBACK) ================== */
 
-  // 1. Read language chosen in Header
- const localeFromUrl =
-  new URLSearchParams(window.location.search).get("locale");
+  const params = new URLSearchParams(window.location.search);
+  const localeFromUrl = params.get("locale"); // am_ET | en_ET | null
 
-const localeFromStorage =
-  localStorage.getItem("Digit.locale");
+  const localeFromStorage = localStorage.getItem("Digit.locale");
 
-const finalLocale = localeFromUrl || localeFromStorage || "en_ET";
+  const finalLocale = localeFromUrl || localeFromStorage || "en_ET";
 
-/* FORCE ALL LOCALES */
-window.Digit.SessionStorage.set("locale", finalLocale);
-window.Digit.SessionStorage.set("lang", finalLocale);
-window.Digit.SessionStorage.set("Citizen.locale", finalLocale);
-window.Digit.SessionStorage.set("Employee.locale", finalLocale);
+  /* ----------------- WRITE ONCE (THIS IS KEY) ----------------- */
 
-/* 🔥 ALSO FORCE localStorage AGAIN */
-localStorage.setItem("Digit.locale", finalLocale);
-localStorage.setItem("Citizen.locale", finalLocale);
-localStorage.setItem("Employee.locale", finalLocale);
+  // SessionStorage (Digit reads this first)
+  Digit.SessionStorage.set("locale", finalLocale);
+  Digit.SessionStorage.set("lang", finalLocale);
+  Digit.SessionStorage.set("Citizen.locale", finalLocale);
+  Digit.SessionStorage.set("Employee.locale", finalLocale);
 
-  const citizenInfo = window.localStorage.getItem("Citizen.user-info");
+  // LocalStorage (for reloads / next visits)
+  localStorage.setItem("Digit.locale", finalLocale);
+  localStorage.setItem("Citizen.locale", finalLocale);
+  localStorage.setItem("Employee.locale", finalLocale);
+
+  /* ================== REST OF YOUR CODE (UNCHANGED) ================== */
+
+  const citizenInfo = localStorage.getItem("Citizen.user-info");
   const citizenTenantId =
-    window.localStorage.getItem("Citizen.tenant-id") || stateCode;
+    localStorage.getItem("Citizen.tenant-id") || stateCode;
 
-  const employeeInfo = window.localStorage.getItem("Employee.user-info");
+  const employeeInfo = localStorage.getItem("Employee.user-info");
   const employeeTenantId =
-    window.localStorage.getItem("Employee.tenant-id");
+    localStorage.getItem("Employee.tenant-id");
 
   const userTypeInfo =
     userType === "CITIZEN" || userType === "QACT"
       ? "citizen"
       : "employee";
 
-  window.Digit.SessionStorage.set("user_type", userTypeInfo);
-  window.Digit.SessionStorage.set("userType", userTypeInfo);
+  Digit.SessionStorage.set("user_type", userTypeInfo);
+  Digit.SessionStorage.set("userType", userTypeInfo);
 
   if (userType !== "CITIZEN") {
-    window.Digit.SessionStorage.set("User", {
+    Digit.SessionStorage.set("User", {
       access_token: token,
       info: employeeInfo ? JSON.parse(employeeInfo) : null,
     });
   }
 
-  window.Digit.SessionStorage.set("Citizen.tenantId", citizenTenantId);
+  Digit.SessionStorage.set("Citizen.tenantId", citizenTenantId);
 
   if (employeeTenantId) {
-    window.Digit.SessionStorage.set("Employee.tenantId", employeeTenantId);
+    Digit.SessionStorage.set("Employee.tenantId", employeeTenantId);
   }
 };
+
 
 const initDigitUI = async () => {
   window.contextPath = window?.globalConfigs?.getConfig("CONTEXT_PATH") || "digit-ui";
@@ -138,11 +141,6 @@ const initDigitUI = async () => {
     <DigitUI stateCode={stateCode} enabledModules={enabledModules} defaultLanding="employee" moduleReducers={moduleReducers} />
   </Suspense>, document.getElementById("root"));
 };
-// 🔥 Force clean Digit boot
-if (window.Digit) {
-  delete window.Digit;
-}
-window.Digit = {};
 
 initLibraries().then(() => {
   initDigitUI();
