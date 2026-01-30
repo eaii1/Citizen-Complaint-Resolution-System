@@ -5,8 +5,8 @@ const ComplaintPhotos = ({ serviceWrapper }) => {
     const [images, setImages] = useState(null);
     const [imageZoom, setImageZoom] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const tenantId = serviceWrapper?.service?.tenantId?.split(".")[0];
-
+    const rawTenantId = serviceWrapper?.service?.tenantId;
+const tenantId = rawTenantId?.split(".")?.[0] || rawTenantId;
     useEffect(() => {
         (async () => {
             const workflow = serviceWrapper?.workflow;

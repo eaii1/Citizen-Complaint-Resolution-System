@@ -138,6 +138,11 @@ const initDigitUI = async () => {
     <DigitUI stateCode={stateCode} enabledModules={enabledModules} defaultLanding="employee" moduleReducers={moduleReducers} />
   </Suspense>, document.getElementById("root"));
 };
+// 🔥 Force clean Digit boot
+if (window.Digit) {
+  delete window.Digit;
+}
+window.Digit = {};
 
 initLibraries().then(() => {
   initDigitUI();
