@@ -22,7 +22,7 @@ const useMobileValidation = (tenantId, validationName = "defaultMobileValidation
         const rules = validationData?.rules;
         const attributes = validationData?.attributes;
         return {
-          prefix: attributes?.prefix || "+91",
+          prefix: attributes?.prefix || "+251",
           pattern: rules?.pattern || "^[6-9][0-9]{9}$",
           maxLength: rules?.maxLength || 10,
           minLength: rules?.minLength || 10,

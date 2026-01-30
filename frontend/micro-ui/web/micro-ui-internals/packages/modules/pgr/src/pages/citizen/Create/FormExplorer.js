@@ -19,7 +19,7 @@ const configs = [
   createComplaint,
   pinComplaintLocaton,
   locationDetails,
-  complaintsLocation,
+  //complaintsLocation,
   additionalDetails,
   complaintsUploadimages
 
@@ -208,7 +208,7 @@ const FormExplorer = () => {
         action: "APPLY",
         verificationDocuments: Array.isArray(formData?.ComplaintImagesPoint)
           ? formData.ComplaintImagesPoint.map((image) => ({
-            documentType: "PHOTO",
+            documentType: "ATTACHMENT",
             fileStoreId: image,
             documentUid: "",
             additionalDetails: {},

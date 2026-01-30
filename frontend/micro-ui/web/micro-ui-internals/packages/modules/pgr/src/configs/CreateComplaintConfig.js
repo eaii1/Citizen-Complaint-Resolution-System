@@ -16,8 +16,8 @@ export const CreateComplaintConfig = {
               populators: {
                 name: "ComplainantContactNumber",
                 error: "CORE_COMMON_MOBILE_ERROR",
-                // componentInFront: "+91",
-                // prefix:"+91",
+                componentInFront: "+251",
+                prefix:"+251",
                 validation: {
                   required: true,
                   // minLength: 10,
@@ -87,7 +87,7 @@ export const CreateComplaintConfig = {
         {
           head: "CS_COMPLAINT_LOCATION_DETAILS",
           body: [
-            {
+           /* {
               inline: true,
               label: "CS_COMPLAINT_POSTALCODE__DETAILS",
               type: "number",
@@ -103,26 +103,38 @@ export const CreateComplaintConfig = {
                 },
                 error: "CORE_COMMON_REQUIRED_ERRMSG",
               },
-            },
+            },*/
             {
-              "key": "boundaryComponent",
-              "type": "boundary",
-              "inline": false,
-              "disable": false,
-              "populators": {
-                "fieldPairClassName": "boundary-filter-label-left-align",
-                "name": "boundaryComponent",
-                "levelConfig": { isSingleSelect: ["zone", "region"] },
-                "layoutConfig": {
-                  "isDropdownLayoutHorizontal": true,
-                  "isLabelFieldLayoutHorizontal": true
+              isMandatory: true,
+              key: "SelectCity",
+              type: "dropdown",
+              label: "CS_COMPLAINT_SELECT_CITY",
+              disable: false,
+              preProcess: {
+                updateDependent: ["populators.options"]
+              },
+              populators: {
+                name: "SelectCity",
+                optionsKey: "i18nKey",
+                error: "CORE_COMMON_REQUIRED_ERRMSG",
+              },
+            },
 
-                },
-                "hierarchyType": "ADMIN",
-                "noCardStyle": false,
-                "module": "CMS-BOUNDARY"
-              }
 
+            {
+              isMandatory: true,
+              key: "SelectLocality",
+              type: "dropdown",
+              label: "CS_COMPLAINT_LOCALITY",
+              disable: false,
+              preProcess: {
+                updateDependent: ["populators.options"]
+              },
+              populators: {
+                name: "SelectLocality",
+                optionsKey: "i18nKey",
+                error: "CORE_COMMON_REQUIRED_ERRMSG",
+              },
             },
             {
               inline: true,
@@ -138,6 +150,7 @@ export const CreateComplaintConfig = {
 
           ],
         },
+
 
         {
           head: "CS_COMPLAINT_DETAILS_ADDITIONAL_DETAILS",
@@ -159,6 +172,23 @@ export const CreateComplaintConfig = {
             },
           ],
         },
+        {
+  "head": "CS_ADDCOMPLAINT_UPLOAD_PHOTO",
+  "body": [
+    {
+      "type": "component",
+      "isMandatory": false,
+      "component": "SelectImages",
+      "key": "ComplaintImagesPoint",
+      "label": "CS_ADDCOMPLAINT_UPLOAD_PHOTO_TEXT",
+      "populators": {
+        "name": "ComplaintImagesPoint"
+      }
+    },
+
+  ]
+
+},
 
       ],
     }

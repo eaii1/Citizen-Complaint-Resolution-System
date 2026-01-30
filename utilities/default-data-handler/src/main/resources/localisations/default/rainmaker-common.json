@@ -21607,7 +21607,7 @@
     },
     {
         "code": "FSM_POST_PAY_SMS_DSO_INPROGRESS_DSO_ACCEPT",
-        "message": "Dear Applicant, Vehicle {VEHICLE_REG_NO} will be reaching your location to clean the septic tank/pit on {POSSIBLE_SERVICE_DATE} with reference to your application number {2}. You can contact the operator in +91 {DSO_MOBILE_NUMBER}.\n\nEGOVS",
+        "message": "Dear Applicant, Vehicle {VEHICLE_REG_NO} will be reaching your location to clean the septic tank/pit on {POSSIBLE_SERVICE_DATE} with reference to your application number {2}. You can contact the operator in +251 {DSO_MOBILE_NUMBER}.\n\nEGOVS",
         "module": "rainmaker-common",
         "locale": "default"
     },
@@ -21715,7 +21715,7 @@
     },
     {
         "code": "FSM_SMS_DSO_INPROGRESS_DSO_ACCEPT",
-        "message": "Dear Applicant, Vehicle {VEHICLE_REG_NO} will be reaching your location to clean the septic tank/pit on {POSSIBLE_SERVICE_DATE} with reference to your application number {2}. You can contact the operator in +91 {DSO_MOBILE_NUMBER}.\n\nEGOVS",
+        "message": "Dear Applicant, Vehicle {VEHICLE_REG_NO} will be reaching your location to clean the septic tank/pit on {POSSIBLE_SERVICE_DATE} with reference to your application number {2}. You can contact the operator in +251 {DSO_MOBILE_NUMBER}.\n\nEGOVS",
         "module": "rainmaker-common",
         "locale": "default"
     },

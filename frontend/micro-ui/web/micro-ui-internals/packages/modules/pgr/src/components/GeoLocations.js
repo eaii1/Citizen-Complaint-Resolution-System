@@ -42,7 +42,7 @@ const PolygonIcon = ({ active }) => (
 const GeoLocations = ({ t, config, onSelect, formData }) => {
   const { t: trans } = useTranslation();
   // Zero Mile Stone, Nagpur (Geographical Center of India)
-  const MAP_CENTER = window?.globalConfigs?.getConfig("MAP_CENTER_LAT_LNG") || { lat: 21.1498, lng: 79.0806 };
+  const MAP_CENTER = window?.globalConfigs?.getConfig("MAP_CENTER_LAT_LNG") || { lat: 9.033416, lng: 38.753 };
   const [coords, setCoords] = useState(MAP_CENTER);
   const [markerPos, setMarkerPos] = useState([MAP_CENTER.lat, MAP_CENTER.lng]);
   const [searchQuery, setSearchQuery] = useState("");

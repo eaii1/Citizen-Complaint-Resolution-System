@@ -10057,7 +10057,7 @@
     },
     {
         "code": "FSM_POST_PAY_SMS_DSO_INPROGRESS_DSO_ACCEPT",
-        "message": "प्रिय आवेदक, वाहन {VEHICLE_REG_NO} आपके आवेदन संख्या {2} के संदर्भ में {POSSIBLE_SERVICE_DATE} को सेप्टिक टैंक/गड्ढे को साफ करने के लिए आपके स्थान पर पहुंचेगा। आप ऑपरेटर से +91 {DSO_MOBILE_NUMBER} पर संपर्क कर सकते हैं।\n\nEGOVS",
+        "message": "प्रिय आवेदक, वाहन {VEHICLE_REG_NO} आपके आवेदन संख्या {2} के संदर्भ में {POSSIBLE_SERVICE_DATE} को सेप्टिक टैंक/गड्ढे को साफ करने के लिए आपके स्थान पर पहुंचेगा। आप ऑपरेटर से +251 {DSO_MOBILE_NUMBER} पर संपर्क कर सकते हैं।\n\nEGOVS",
         "module": "rainmaker-common",
         "locale": "hi_IN"
     },
@@ -10099,7 +10099,7 @@
     },
     {
         "code": "FSM_SMS_DSO_INPROGRESS_DSO_ACCEPT",
-        "message": "प्रिय आवेदक, आपके आवेदन नंबर {2} के संदर्भ में सेप्टिक टंकी / गड्ढे की सफाई के लिए वाहन {VEHICLE_REG_NO} दिनांक {POSSIBLE_SERVICE_DATE} पर आपके स्थान तक पहुँचेगा। आप +91{DSO_MOBILE_NUMBER} पर ऑपरेटर से संपर्क कर सकते हैं।\n\nEGOVS",
+        "message": "प्रिय आवेदक, आपके आवेदन नंबर {2} के संदर्भ में सेप्टिक टंकी / गड्ढे की सफाई के लिए वाहन {VEHICLE_REG_NO} दिनांक {POSSIBLE_SERVICE_DATE} पर आपके स्थान तक पहुँचेगा। आप +251{DSO_MOBILE_NUMBER} पर ऑपरेटर से संपर्क कर सकते हैं।\n\nEGOVS",
         "module": "rainmaker-common",
         "locale": "hi_IN"
     },
