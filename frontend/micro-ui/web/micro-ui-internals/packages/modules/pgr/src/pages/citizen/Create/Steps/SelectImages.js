@@ -9,7 +9,7 @@ const SelectImages = ({ t, config, formData, onSelect, onSkip, value = {} }) => 
   // Get tenantId from the selected city in previous step (SelectAddress)
   const selectedCityCode = formData?.SelectAddress?.city?.code;
   const fallbackTenantId = Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY")?.code;
-  const tenantId = fallbackTenantId || Digit.ULBService.getCurrentTenantId();
+  const tenantId = selectedCityCode || fallbackTenantId || Digit.ULBService.getCurrentTenantId();
 
   const handleUpload = (ids) => {
     setUploadedImagesIds(ids);

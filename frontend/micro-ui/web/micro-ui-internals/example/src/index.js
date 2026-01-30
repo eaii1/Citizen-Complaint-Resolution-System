@@ -27,29 +27,65 @@ const enabledModules = [
 ];
 
 const initTokens = (stateCode) => {
-  const userType = window.sessionStorage.getItem("userType") || process.env.REACT_APP_USER_TYPE || "CITIZEN";
-  const token = window.localStorage.getItem("token") || process.env[`REACT_APP_${userType}_TOKEN`];
+  const userType =
+    window.sessionStorage.getItem("userType") ||
+    process.env.REACT_APP_USER_TYPE ||
+    "CITIZEN";
+
+  const token =
+    window.localStorage.getItem("token") ||
+    process.env[`REACT_APP_${userType}_TOKEN`];
+
+  /* ---------------- LANGUAGE (ADD THIS PART) ---------------- */
+
+  // 1. Read language chosen in Header
+ const localeFromUrl =
+  new URLSearchParams(window.location.search).get("locale");
+
+const localeFromStorage =
+  localStorage.getItem("Digit.locale");
+
+const finalLocale = localeFromUrl || localeFromStorage || "en_ET";
+
+/* FORCE ALL LOCALES */
+window.Digit.SessionStorage.set("locale", finalLocale);
+window.Digit.SessionStorage.set("lang", finalLocale);
+window.Digit.SessionStorage.set("Citizen.locale", finalLocale);
+window.Digit.SessionStorage.set("Employee.locale", finalLocale);
+
+/* 🔥 ALSO FORCE localStorage AGAIN */
+localStorage.setItem("Digit.locale", finalLocale);
+localStorage.setItem("Citizen.locale", finalLocale);
+localStorage.setItem("Employee.locale", finalLocale);
 
   const citizenInfo = window.localStorage.getItem("Citizen.user-info");
-
-  const citizenTenantId = window.localStorage.getItem("Citizen.tenant-id") || stateCode;
+  const citizenTenantId =
+    window.localStorage.getItem("Citizen.tenant-id") || stateCode;
 
   const employeeInfo = window.localStorage.getItem("Employee.user-info");
-  const employeeTenantId = window.localStorage.getItem("Employee.tenant-id");
+  const employeeTenantId =
+    window.localStorage.getItem("Employee.tenant-id");
 
-  const userTypeInfo = userType === "CITIZEN" || userType === "QACT" ? "citizen" : "employee";
+  const userTypeInfo =
+    userType === "CITIZEN" || userType === "QACT"
+      ? "citizen"
+      : "employee";
+
   window.Digit.SessionStorage.set("user_type", userTypeInfo);
   window.Digit.SessionStorage.set("userType", userTypeInfo);
 
   if (userType !== "CITIZEN") {
-    window.Digit.SessionStorage.set("User", { access_token: token, info: userType !== "CITIZEN" ? JSON.parse(employeeInfo) : citizenInfo });
-  } else {
-    // if (!window.Digit.SessionStorage.get("User")?.extraRoleInfo) window.Digit.SessionStorage.set("User", { access_token: token, info: citizenInfo });
+    window.Digit.SessionStorage.set("User", {
+      access_token: token,
+      info: employeeInfo ? JSON.parse(employeeInfo) : null,
+    });
   }
 
   window.Digit.SessionStorage.set("Citizen.tenantId", citizenTenantId);
 
-  if (employeeTenantId && employeeTenantId.length) window.Digit.SessionStorage.set("Employee.tenantId", employeeTenantId);
+  if (employeeTenantId) {
+    window.Digit.SessionStorage.set("Employee.tenantId", employeeTenantId);
+  }
 };
 
 const initDigitUI = async () => {
