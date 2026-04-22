@@ -4777,7 +4777,7 @@
     },
     {
         "code": "SCHEMA_INBOX_V_INBOX_V2",
-        "message": "Inbox-v2",
+        "message": "Inbox",
         "module": "rainmaker-workbench",
         "locale": "default"
     },
@@ -7051,7 +7051,7 @@
     },
     {
         "code": "WBH_MDMS_INBOX_V_INBOX_V2",
-        "message": "Inbox-v2",
+        "message": "Inbox",
         "module": "rainmaker-workbench",
         "locale": "default"
     },
